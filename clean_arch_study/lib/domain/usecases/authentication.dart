@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:meta/meta.dart';
 
 import '../entities/entities.dart';
@@ -15,4 +14,6 @@ class AuthenticationParams {
     @required this.email,
     @required this.secret,
   });
+
+  Map toJson() => {'email': email, 'password': secret};
 }
