@@ -1,7 +1,10 @@
 class AccountEntity {
-  final String toke;
+  final String token;
 
   AccountEntity({
-    this.toke,
+    this.token,
   });
+
+  factory AccountEntity.fromJson(Map json) =>
+      AccountEntity(token: json['accessToken']);
 }
