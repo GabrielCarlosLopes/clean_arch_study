@@ -23,13 +23,19 @@ class HttpAdatper {
 
 class ClientSpy extends Mock implements Client {}
 
+HttpAdatper sut;
+ClientSpy client;
+String url;
+
 void main() {
+  setUp(() {
+    client = ClientSpy();
+    sut = HttpAdatper(client);
+    url = faker.internet.httpUrl();
+  });
+
   group('post', () {
     test('Should call post with correct values', () async {
-      final client = ClientSpy();
-      final sut = HttpAdatper(client);
-      final url = faker.internet.httpUrl();
-
       await sut.request(url: url, method: 'post');
 
       verify(client.post(
