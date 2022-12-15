@@ -9,9 +9,9 @@ abstract class Validation {
   String validate({@required String field, @required String value});
 }
 
-class StramLoginPresenter {
+class StreamLoginPresenter {
   final Validation validation;
-  StramLoginPresenter({
+  StreamLoginPresenter({
     @required this.validation,
   });
   void validateEmail(String email) {
@@ -22,11 +22,15 @@ class StramLoginPresenter {
 class ValidationSpy extends Mock implements Validation {}
 
 void main() {
+  StreamLoginPresenter sut;
+  ValidationSpy validation;
+  String email;
+  setUp(() {
+    validation = ValidationSpy();
+    sut = StreamLoginPresenter(validation: validation);
+    email = faker.internet.email();
+  });
   test('should call validation with correct email', () {
-    final validation = ValidationSpy();
-    final sut = StramLoginPresenter(validation: validation);
-    final email = faker.internet.email();
-
     sut.validateEmail(email);
 
     verify(validation.validate(field: 'email', value: email)).called(1);
