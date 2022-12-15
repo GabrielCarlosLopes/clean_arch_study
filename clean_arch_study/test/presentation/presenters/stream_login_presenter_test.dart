@@ -1,15 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 
+import 'package:ForDev/presentation/presenters/protocols/validation.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
+
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-
-abstract class Validation {
-  String validate({@required String field, @required String value});
-}
 
 class LoginState {
   String emailError;
