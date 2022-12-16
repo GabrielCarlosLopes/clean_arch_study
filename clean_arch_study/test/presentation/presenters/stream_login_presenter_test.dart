@@ -1,10 +1,10 @@
-import 'package:ForDev/domain/helpers/helpers.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'package:ForDev/domain/entities/entities.dart';
 import 'package:ForDev/domain/usecases/authentication.dart';
+import 'package:ForDev/domain/helpers/helpers.dart';
 
 import 'package:ForDev/presentation/protocols/protocols.dart';
 import 'package:ForDev/presentation/presenters/presenters.dart';
@@ -139,6 +139,17 @@ void main() {
     expectLater(sut.isLoadingStream, emits(false));
     sut.mainErrorStream.listen(
         expectAsync1((error) => expect(error, 'Credeciais inválidas.')));
+
+    await sut.auth();
+  });
+  test('should emits correct events on UnexpectedError', () async {
+    mockAuthenticationError(DomainError.unexpected);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+
+    expectLater(sut.isLoadingStream, emits(false));
+    sut.mainErrorStream.listen(expectAsync1((error) =>
+        expect(error, 'Algo errado aconteceu. Tente novamente em breve')));
 
     await sut.auth();
   });

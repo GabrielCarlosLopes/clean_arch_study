@@ -7,7 +7,7 @@ extension DomainErrorExtension on DomainError {
         return 'Credeciais inválidas.';
         break;
       default:
-        return '';
+        return 'Algo errado aconteceu. Tente novamente em breve';
     }
   }
 }
