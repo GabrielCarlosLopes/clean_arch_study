@@ -1,20 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:test/test.dart';
 
-abstract class FieldValidtion {
-  String get field;
-  String validate(String value);
-}
-
-class RequiredFieldValidation implements FieldValidtion {
-  final String field;
-
-  RequiredFieldValidation(this.field);
-
-  String validate(String value) {
-    return value?.isNotEmpty == true ? null : 'Campo obrigatório';
-  }
-}
+import 'package:ForDev/validation/validators/validators.dart';
 
 void main() {
   RequiredFieldValidation sut;
