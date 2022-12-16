@@ -14,5 +14,5 @@ class RemoteAccountModel {
     }
     return RemoteAccountModel(accessToken: json['accessToken']);
   }
-  AccountEntity toEntity() => AccountEntity(token: accessToken);
+  AccountEntity toEntity() => AccountEntity(accessToken);
 }
