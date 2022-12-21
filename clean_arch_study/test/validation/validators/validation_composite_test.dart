@@ -1,10 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:ForDev/presentation/protocols/protocols.dart';
 import 'package:ForDev/validation/protocols/protocols.dart';
+import 'package:ForDev/validation/validators/validators.dart';
+
+class FieldValidationSpy extends Mock implements FieldValidtion {}
 
 void main() {
   ValidationComposite sut;
@@ -51,23 +51,4 @@ void main() {
 
     expect(error, 'error_2');
   });
-}
-
-class FieldValidationSpy extends Mock implements FieldValidtion {}
-
-class ValidationComposite implements Validation {
-  final List<FieldValidtion> validations;
-
-  ValidationComposite(this.validations);
-
-  String validate({@required String field, @required String value}) {
-    String error;
-    for (final validation in validations.where((v) => v.field == field)) {
-      error = validation.validate(value);
-      if (error?.isNotEmpty == true) {
-        return error;
-      }
-    }
-    return error;
-  }
 }
