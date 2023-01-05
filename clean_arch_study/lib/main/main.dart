@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../ui/components/components.dart';
-import 'package:ForDev/main/factories/pages/login/login_page_factory.dart';
+import '../main/factories/factories.dart';
 
 void main() {
   runApp(App());
