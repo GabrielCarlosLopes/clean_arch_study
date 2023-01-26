@@ -27,17 +27,19 @@ class GetxLoginPresenter extends GetxController implements LoginPresenter {
   Stream<bool> get isFormValidStream => _isFormValid.stream;
   Stream<bool> get isLoadingStream => _isLoading.stream;
 
-  GetxLoginPresenter(
-      {@required this.validation, @required this.authentication});
+  GetxLoginPresenter({
+    @required this.validation,
+    @required this.authentication,
+  });
 
   void validateEmail(String email) {
-    email = email;
+    _email = email;
     _emailError.value = validation.validate(field: 'email', value: email);
     _validateForm();
   }
 
   void validatePassword(String password) {
-    password = password;
+    _password = password;
     _passwordError.value =
         validation.validate(field: 'password', value: password);
     _validateForm();
