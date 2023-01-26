@@ -53,7 +53,7 @@ void main() {
       verify(client.post(url,
           headers: {
             'content-type': 'application/json',
-            'accept': 'application/json',
+            'accept': 'application/json'
           },
           body: '{"any_key":"any_value"}'));
     });
